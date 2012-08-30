@@ -1,0 +1,173 @@
+\documentclass[a4j]{jarticle}
+\usepackage{listings,ascmac}
+\usepackage[dvips]{graphicx}
+\usepackage{slashbox}
+\usepackage{multirow}
+\lstset{language=C, numbers=left, breaklines=true, breakindent=10pt, frame=ltrb, basicstyle=\small\ttfamily }
+
+\begin{document}
+\section{使い方}
+\subsection{セクション}
+2つ以上の\#でセクションを記述できます．
+\begin{quote}
+\#\# \\
+\end{quote}
+このように2つの\#でセクションが生成され，以後\#を足すごとにサブセクションが生成されます
+
+\subsection{太文字，下線}
+\#や\_を使い太文字，や下線を引くことができます
+\begin{quote}
+これは\#\#太文字\#\# \\
+これは\_\_下線\_\_ \\
+\end{quote}
+これは\bf{太文字}\rm{} \\ 
+これは\underline{下線}\rm{}
+
+\subsection{箇条書き}
+箇条書きは*,+,-を使って記述します
+\begin{quote}
++ ほいさ \\
+\ \ \ \ * どっこい \\
+\ \ \ \ * よっこいしょ \\
++ そいや \\
+\end{quote}
+このように記述すると次のように出力されます．
+\begin{itemize}
+\item ほいさ
+\begin{itemize}
+\item どっこい
+\item よっこいしょ
+\end{itemize}
+\item そいや
+\end{itemize}
+タブで字下げすることで箇条書きも下げられます．
+
+\subsection{列挙}
+数字とピリオドの組み合わせで列挙できます．番号は自動生成されるためすべて1.と書いても列挙して出力されます．
+\begin{quote}
+1. 1番 \\
+1. 2番 \\
+\end{quote}
+\begin{enumerate}
+\item 1番
+\item 2番
+\end{enumerate}
+
+\subsection{自由な箇条書き}
+数字以外とピリオドの組み合わせで自由に箇条書きのヘッダを記述できます．
+\begin{quote}
+(a). hoge \\
+(b). fuga \\
+\end{quote}
+\begin{description}
+\item[(a)]hoge
+\item[(b)]fuga
+\end{description}
+このとき，ヘッダは自動でインクリメントされません．
+
+\subsection{引用文}
+$>$を行頭につけるとその行は引用文になります
+\begin{quote}
+$>$ これは $\backslash \backslash$ \\
+$>$ 引用文です \\
+\end{quote}
+
+\begin{quote}
+これは \\
+引用文です \\
+\end{quote}
+
+\subsection{画像の添付}
+画像の添付！から始まり，キャプション，ファイル名と記述します．
+\begin{quote}
+\verb`![hogehoge](img/hoge.eps)` \\
+\end{quote}
+\begin{figure}[htbp]
+\begin{center}
+\includegraphics[width=150mm]{img/hoge.eps}
+\caption{{\bf hogehgoe}}
+\label{default}
+\end{center}
+\end{figure}
+\subsection{ソースコード}
+ソースコードは```から始まり，言語名：キャプションと記述しする．
+その後，再び```が出るまでの行をソースコードとして認識します．
+\begin{quote}
+```java:hoge.java \\
+public staic void main(string[] args)\{ \\
+\ \ \ \ System.out.println("Hello,World!!"); \\
+\} \\
+``` \\
+\end{quote}
+
+\begin{lstlisting}[language=java,caption=hoge.java]
+public staic void main(string[] args){
+	System.out.println("Hello,World!!");
+}
+\end{lstlisting}
+
+\subsection{ インラインコード}
+インラインコードはグラーブアクセント（｀）で囲って記述します．	
+\begin{quote}
+インラインコード｀System.out.println("Hello,World!!");｀です \\
+\end{quote}
+これは，インラインコード\verb`System.out.println("Hello,World!!");`です
+
+\subsection{エスケープ}
+Texのエスケープに従ってください．
+\begin{quote}
+これは(丸括弧)，これは$\backslash$\{中括弧$\backslash$\}，これは100$\backslash$\% \\
+\end{quote}
+これは(丸括弧)，これは\{中括弧\}，これは100\%
+MarkTexのエスケープは未実装です．つまり半角文字のグラーブアクセントは現在記述できません．他の文字はインラインコードを用いて表記することが可能です．		
+
+\subsection{水平線}
+ハイフン記号を3つ以上つなげることによって水平線が記述できます．
+\begin{quote}
+\noindent \rule{\textwidth}{0.1mm} \\
+\end{quote}
+\noindent \rule{\textwidth}{0.1mm}
+
+
+\subsection{スクリーン}
+アスタリスク（*）を3つ以上で囲むと囲まれた内部がスクリーンに記述されます．	
+\begin{screen}
+	hogehogehoe
+\end{screen}
+
+\subsection{アイテムボック}
+等号（=）で3つ以上で囲むことでアイテムボックスを記述できます．アイテムボックスのヘッダは等号の左，右，または中央に入れることで指定します．
+\begin{quote}
+左==== \\
+hogehogehoe \\
+================= \\
+\end{quote}
+\begin{itembox}[l]{左}
+	hogehogehoe
+\end{itembox}
+\begin{quote}
+===右 \\
+hogehogehoe \\
+================= \\
+\end{quote}
+\begin{itembox}[r]{右}
+	hogehogehoe
+\end{itembox}
+\begin{quote}
+===中央== \\
+hogehogehoe \\
+================= \\
+\end{quote}
+\begin{itembox}[c]{中央}
+	hogehogehoe
+\end{itembox}
+
+\subsection{数式}
+eqnarrayをドル記号（\$）3つで囲むことで表現できます．
+\begin{eqnarray}
+a = 0
+\\
+b = 0
+\end{eqnarray}
+
+\end{document}
