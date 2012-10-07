@@ -371,6 +371,7 @@ def _math(line):
 		math_count = math_count + 1
 	return (line,status,next)
 def _screen(line):
+	global depth
 	status = "screen"
 	next = True
 	r = re.compile("^\*{3,}\s?")
@@ -383,6 +384,7 @@ def _screen(line):
 		depth = 0
 	return (line,status,next)
 def _itembox(line):
+	global depth
 	status = "itembox"
 	next = True
 	r = re.compile("={3,}\s?")
